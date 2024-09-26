@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Resultado de Búsqueda</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2 class="text-center mb-4">Resultado de Búsqueda</h2>
+
+            <div class="card">
+                <div class="card-header">
+                    <h4>Información del Vehículo</h4>
+                </div>
+                <div class="card-body">
+                    <!-- Verificar si se encontraron los datos -->
+                    <div th:if="${busquedaModel.codigo == '00'}">
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th scope="row">Marca</th>
+                                <td th:text="${busquedaModel.marca}">Toyota</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Modelo</th>
+                                <td th:text="${busquedaModel.modelo}">Corolla</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Número de Asientos</th>
+                                <td th:text="${busquedaModel.numeroAsientos}">5</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Precio</th>
+                                <td th:text="${busquedaModel.precio}">20,000 USD</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Color</th>
+                                <td th:text="${busquedaModel.color}">Rojo</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Mostrar mensaje de error si no se encontraron datos -->
+                    <div th:if="${busquedaModel.codigo == '01'}" class="alert alert-danger" role="alert">
+                        <strong>Error:</strong> <span th:text="${busquedaModel.mensaje}">No se encontraron resultados.</span>
+                    </div>
+                </div>
+
+                <div class="card-footer text-center">
+                    <a href="/busqueda/inicio" class="btn btn-primary">Nueva Búsqueda</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
